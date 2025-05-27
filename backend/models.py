@@ -5,9 +5,11 @@ from datetime import datetime
 class Note(BaseModel):
     timestamp: datetime
     content: str
+    title: Optional[str] = None
 
 class NoteCreate(BaseModel):
     content: str
+    title: Optional[str] = None
 
 #Signup
 class UserCreate(BaseModel):

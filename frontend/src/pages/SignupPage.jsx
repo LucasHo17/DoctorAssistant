@@ -27,7 +27,7 @@ const SignupPage = () => {
       }
   };
   return (
-    <div className='container'>
+    <div className='signup-container'>
         <motion.div 
           className='signup-form'
           initial={{ opacity: 0, y: 20 }}

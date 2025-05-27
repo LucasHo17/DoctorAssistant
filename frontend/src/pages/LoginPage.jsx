@@ -29,7 +29,7 @@ const LoginPage = () => {
   }
 
   return (
-    <div className='container'>
+    <div className='login-container'>
         <motion.div 
           className='login-form'
           initial={{ opacity: 0, y: 20 }}

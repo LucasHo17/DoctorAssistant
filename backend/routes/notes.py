@@ -13,7 +13,9 @@ async def save_note(note: NoteCreate, user_email: str = Depends(get_current_user
 
     note_data = {
         "timestamp": datetime.now(timezone.utc),
-        "content": note.content
+        "content": note.content,
+        "title": note.title or "Untitled"
+
     }
 
     result = await db["users"].update_one(
@@ -34,4 +36,16 @@ async def get_notes(user_email: str = Depends(get_current_user)):
         raise HTTPException(status_code=404, detail="User not found")
 
     return {"notes": user.get("notes", [])}
+
+@router.delete("/notes/{timestamp}")
+async def delete_note(timestamp: str, user_email: str = Depends(get_current_user)):
+    result = await db["users"].update_one(
+        {"email": user_email},
+        {"$pull": {"notes": {"timestamp": timestamp}}}
+    )
+
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Note not found")
+
+    return {"message": "Note deleted"}
 

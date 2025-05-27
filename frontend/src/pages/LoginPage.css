@@ -3,7 +3,7 @@ body {
     margin:0;
 }
 
-.container {
+.login-container {
     background: radial-gradient(circle at center, #3a6654, #2b5742, #12271a);
     display: flex;
     justify-content: center;
