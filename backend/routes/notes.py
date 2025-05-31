@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
-from models import NoteCreate, Note
+from models import NoteCreate
 from db import db
 from auth import get_current_user
 from datetime import datetime, timezone
