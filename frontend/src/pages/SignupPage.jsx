@@ -17,7 +17,7 @@ const SignupPage = () => {
       try {
           const response = await signup(email, password, username); // Use the correct signup function
           if (response.message === "Signup successful") {
-              navigate('/login'); // Redirect to login page
+              navigate('/login'); 
           } else {
               alert("Signup failed. Please try again.");
           }
