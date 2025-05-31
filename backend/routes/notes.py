@@ -3,6 +3,7 @@ from models import NoteCreate, Note
 from db import db
 from auth import get_current_user
 from datetime import datetime, timezone
+from bson import ObjectId
 
 router = APIRouter()
 
@@ -12,6 +13,7 @@ async def save_note(note: NoteCreate, user_email: str = Depends(get_current_user
         raise HTTPException(status_code=400, detail="Note content is empty")
 
     note_data = {
+        "note_id": str(ObjectId()),  # Generate a unique ID for the note
         "timestamp": datetime.now(timezone.utc),
         "content": note.content,
         "title": note.title or "Untitled"
@@ -37,11 +39,11 @@ async def get_notes(user_email: str = Depends(get_current_user)):
 
     return {"notes": user.get("notes", [])}
 
-@router.delete("/notes/{timestamp}")
-async def delete_note(timestamp: str, user_email: str = Depends(get_current_user)):
+@router.delete("/notes/{note_id}")
+async def delete_note(note_id: str, user_email: str = Depends(get_current_user)):
     result = await db["users"].update_one(
         {"email": user_email},
-        {"$pull": {"notes": {"timestamp": timestamp}}}
+        {"$pull": {"notes": {"note_id": note_id}}}
     )
 
     if result.modified_count == 0:

@@ -10,8 +10,8 @@ export const saveNote =  async (content) => {
     return response.data
 }
 
-export const deleteNote = async (timestamp) => {
-  const response = await api.delete(`/notes/${timestamp}`);
+export const deleteNote = async (noteId) => {
+  const response = await api.delete(`/notes/${noteId}`);
   return response.data;
 };
 

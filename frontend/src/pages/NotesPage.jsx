@@ -6,18 +6,33 @@ import { getNotes, deleteNote } from '../api/notes';
 import { BsJournalMedical } from "react-icons/bs";
 import { CiLogout } from "react-icons/ci";
 import { MdOutlineDelete } from "react-icons/md";
-
-
+import { MdOutlineEdit } from "react-icons/md";
+import { IoMdClose } from "react-icons/io";
+import {jwtDecode} from "jwt-decode";
+import { BiPlusMedical } from "react-icons/bi";
+import { GiStrong } from "react-icons/gi";
 
 const NotesPage = () => {
   const [notes, setNotes]= useState([]);
   const [selectedNote, setSelectedNote] = useState(null);
   const navigate = useNavigate();
 
+  const isTokenValid = () => {
+    const token = localStorage.getItem("token");
+    if (!token) return false;
+
+    try {
+      const decoded = jwtDecode(token);
+      const currentTime = Date.now() / 1000; // Convert to seconds
+      return decoded.exp > currentTime; // Check if token is expired
+    } catch (error) {
+      console.error("Token decoding error:", error);
+      return false; // If there's an error decoding, treat it as invalid
+    }
+  }
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
+    if (!isTokenValid()) {
       navigate("/login");
     } else {
         getNotes()
@@ -42,34 +57,42 @@ const NotesPage = () => {
           <BsJournalMedical style={{marginRight:"0.5rem"}}/>
           <span>Your Records</span>
         </h1>
-        <button onClick={handleLogout} className="logout-button">
-          <CiLogout />
-          Logout
-        </button>
-      </nav>
 
-      <ul>
+        {isTokenValid() ? (
+          <button onClick={handleLogout} className="logout-button">
+            <CiLogout />
+            Logout
+          </button>
+        ) : (
+          <div>
+            <button onClick={() => navigate("/login")} className="login-button">
+              Login
+            </button>
+            <button onClick={() => navigate("/signup")} className="signup-button">
+              Signup
+            </button>
+          </div>
+        )}
+
+      </nav>
+      {notes.length === 0 ? (
+        <div className="empty-notes">
+          You are healthy!
+          <GiStrong />
+        </div>
+      ) : (
+        <ul>
         {selectedNote && (
           <div className="note-modal">
             <div className="note-modal-content">
-              <input
-                value={selectedNote.title}
-                onChange={(e) =>
-                  setSelectedNote({ ...selectedNote, title: e.target.value })
-                }
-                className="note-title-input"
-              />
+              <div className='note-header'>
+                <BiPlusMedical style={{marginBottom:"1rem", marginRight:"0.5rem", color:"red", fontSize:"2rem"}}/>
+                <h2 className='note-title-header'>{selectedNote.title|| "Untitled"}</h2>
+              </div>
+              <hr className="note-divider" />
               <p>{selectedNote.content}</p>
-
-              <div className="note-buttons">
-                <button onClick={() => setSelectedNote(null)}>Close</button>
-                <button className="delete-button" onClick={async () => {
-                  await deleteNote(selectedNote.timestamp);
-                  setSelectedNote(null);
-                  setNotes(notes.filter(n => n.timestamp !== selectedNote.timestamp));
-                }}>
-                  Delete
-                </button>
+              <div>
+                <button  className="note-close-buttons" onClick={() => setSelectedNote(null)}><IoMdClose /></button>
               </div>
             </div>
           </div>
@@ -80,19 +103,41 @@ const NotesPage = () => {
             key={index}
             className='note-card'
             onClick={()=> setSelectedNote(note)}>
-            <strong>{note.title || "Untitled"}</strong><br/>
-            <button
-              className = "delete-button"
-              onClick={async (e) => {
-                e.stopPropagation();
-                await deleteNote(note.timestamp);
-                setNotes(notes.filter(n => n.timestamp !== note.timestamp));
-              }}>
-              <MdOutlineDelete />
-            </button>
+              <div>
+                <strong>{note.title || "Untitled"}</strong><br/>
+                <span className="note-timestamp">
+                  {new Date(note.timestamp).toLocaleString()}
+                </span>
+              </div>
+              <div className="note-card-buttons">
+                <button
+                  className='edit-title-button'
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    const newTitle = prompt("Enter new title: ", note.title || "Unitilted");
+                    if (newTitle) {
+                      setNotes(notes.map(n=>n.timestamp === note.timestamp ? { ...n, title: newTitle}:n))
+                    }
+                }}>
+                  <MdOutlineEdit />
+                </button>
+
+                <button
+                  className="delete-button"
+                  onClick={async (e) => {
+                    e.stopPropagation();
+                    await deleteNote(note.note_id); // Use note_id instead of timestamp
+                    setNotes(notes.filter(n => n.note_id !== note.note_id));
+                  }}
+                >
+                  <MdOutlineDelete />
+                </button>
+              </div>
           </li>
         ))}
       </ul>
+      )}
+      
 
       <button onClick={() => navigate("/doctor")} className="meet-button">
         👨‍⚕️ Meet the Doctor

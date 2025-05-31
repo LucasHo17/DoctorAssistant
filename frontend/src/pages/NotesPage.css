@@ -3,7 +3,7 @@
 .notes-container {
     padding: 2rem;
     min-height: 100vh;
-    background: #e0f2e9;
+    background: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +17,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #3a6654;
+    background: #031d3bdf;
     color:white;
     padding: 0rem 2rem;
     border-radius: 8px;
@@ -43,7 +43,20 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
-
+.empty-notes{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height:70vh;
+  font-size: 2rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1); /* Slightly translucent background */
+  color: #565c59; /* Match the theme color */
+  backdrop-filter: blur(5px); /* Apply blur effect */
+  -webkit-backdrop-filter: blur(5px); /* Safari support */
+  border-radius: 12px; /* Rounded corners for aesthetic */
+  padding: 1rem; /* Add padding for spacing */
+}
 ul {
   list-style: none;
   padding: 0;
@@ -65,40 +78,39 @@ ul {
 }
 
 .note-modal-content {
-  background: white;
+  font-family: 'Patrick Hand', cursive;
+  background: #f9f9f8; /* Light cream color for a paper-like look */
   padding: 2rem;
   border-radius: 12px;
   max-width: 500px;
   width: 90%;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid #0c0b09; /* Subtle border for a paper effect */
 }
 
-.note-title-input {
-  font-size: 1.2rem;
-  width: 100%;
+.note-header {
+  display: flex;
+  align-items: center;
+}
+.note-title-header {
+  font-size: 1.8rem;
+  font-weight: bold;
   margin-bottom: 1rem;
-  padding: 0.5rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  margin-top: -0.5rem;
+  color: #121a4d; /* Dark brown for a vintage look */
 }
 
-.note-buttons {
+.note-modal-content p {
+  word-wrap: break-word; /* Ensures long words or URLs break into the next line */
+  white-space: normal; /* Allows text wrapping */
+}
+
+.note-close-buttons {
   display: flex;
   justify-content: space-between;
-  margin-top: 1rem;
-}
+  margin-top: 2.5rem;
+  margin-bottom: -0.5rem;
 
-.delete-button {
-  background: #c0392b;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-}
-
-.delete-button:hover {
-  background: #a93226;
 }
 
 li {
@@ -110,20 +122,46 @@ li {
 }
 
 .note-card {
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
+  background: #f6f6f5; /* Same cream color for consistency */
   padding: 1rem;
   margin-bottom: 1rem;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #070605;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: 'Georgia', serif;
 }
 
 .note-card:hover {
   transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.note-timestamp {
+  display: block;
+  font-size: 0.8rem;
+  color: #888; /* Light gray for less noticeable text */
+  margin-top: 0.2rem;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.edit-title-button {
+  background: #f4a261; /* Warm orange for a sticky note vibe */
+  color: white;
+  margin-right: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.edit-title-button:hover {
+  background: #e76f51; /* Slightly darker orange */
 }
 
 .note-card .delete-button{
@@ -142,8 +180,11 @@ li {
 
 
 .meet-button {
+  position:fixed;
+  bottom:3rem;
+  right:4rem;
   padding: 0.75rem 1.5rem;
-  background: #3a6654;
+  background: #031d3bdf;
   color: white;
   border: none;
   border-radius: 8px;
@@ -153,5 +194,5 @@ li {
 }
 
 .meet-button:hover {
-  background: #2c4d42;
+  background: #020d26;
 }
