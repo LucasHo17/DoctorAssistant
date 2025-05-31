@@ -1,4 +1,4 @@
-import api from './axios'; // ✅ correct if 'axios.js' exports default
+import api from './axios'; 
 
 export const askDoctor = async (messages) => {
   const response = await api.post("/ask-doctor", { messages });
