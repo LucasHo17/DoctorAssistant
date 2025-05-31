@@ -18,6 +18,7 @@ const LoginPage = () => {
         const response = await login(email, password);
         if (response.access_token) {
             localStorage.setItem('token', response.access_token);
+            console.log("Token stored:", localStorage.getItem('token')); // Debugging
             navigate('/');
         } else {
             alert("Login failed: No access token received.");

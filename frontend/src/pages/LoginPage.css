@@ -4,7 +4,7 @@ body {
 }
 
 .login-container {
-    background: radial-gradient(circle at center, #3a6654, #2b5742, #12271a);
+    background: radial-gradient(circle at center, #221a50, #336c51, #12271a);
     display: flex;
     justify-content: center;
     align-items: center;
