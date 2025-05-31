@@ -79,7 +79,7 @@ ul {
 
 .note-modal-content {
   font-family: 'Patrick Hand', cursive;
-  background: #f9f9f8; /* Light cream color for a paper-like look */
+  background: #f9f9f8; 
   padding: 2rem;
   border-radius: 12px;
   max-width: 500px;
@@ -97,7 +97,7 @@ ul {
   font-weight: bold;
   margin-bottom: 1rem;
   margin-top: -0.5rem;
-  color: #121a4d; /* Dark brown for a vintage look */
+  color: #121a4d; 
 }
 
 .note-modal-content p {
@@ -125,7 +125,7 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f6f6f5; /* Same cream color for consistency */
+  background: #f6f6f5;
   padding: 1rem;
   margin-bottom: 1rem;
   border-radius: 12px;
@@ -144,13 +144,13 @@ li {
 .note-timestamp {
   display: block;
   font-size: 0.8rem;
-  color: #888; /* Light gray for less noticeable text */
+  color: #888; 
   margin-top: 0.2rem;
   font-family: 'Times New Roman', Times, serif;
 }
 
 .edit-title-button {
-  background: #f4a261; /* Warm orange for a sticky note vibe */
+  background: #f4a261; 
   color: white;
   margin-right: 0.5rem;
   padding: 0.3rem 0.6rem;
@@ -161,7 +161,7 @@ li {
 }
 
 .edit-title-button:hover {
-  background: #e76f51; /* Slightly darker orange */
+  background: #e76f51; 
 }
 
 .note-card .delete-button{
