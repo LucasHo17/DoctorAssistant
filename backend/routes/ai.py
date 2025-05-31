@@ -4,9 +4,6 @@ import os
 from fastapi.responses import StreamingResponse
 import io
 from pydantic import BaseModel
-from typing import List, Dict
-import requests
-
 
 class PromptInput(BaseModel):
     prompt: str
@@ -17,7 +14,7 @@ class ChatHistory(BaseModel):
 
 router = APIRouter()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-DID_API_KEY = os.getenv("DID_API_KEY")  # from your .env
+DID_API_KEY = os.getenv("DID_API_KEY")  
 
 
 @router.post("/ask-doctor")
