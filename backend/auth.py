@@ -2,7 +2,7 @@ from jose import jwt, JWTError
 from datetime import datetime, timedelta, timezone
 import bcrypt
 from dotenv import load_dotenv
-from fastapi import Request, HTTPException, Depends
+from fastapi import HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 import os
 
@@ -32,7 +32,7 @@ async def get_current_user(token: HTTPAuthorizationCredentials = Depends(auth_sc
     payload = decode_access_token(token.credentials)
     if payload is None:
         raise HTTPException(status_code=401, detail="Invalid or expired token")
-    return payload["sub"]  # we stored email as "sub"
+    return payload["sub"] 
 
 def hash_password(password: str)->str:
     return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode()
