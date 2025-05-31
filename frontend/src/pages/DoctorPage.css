@@ -18,15 +18,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0; /* Optional: Add a background color */
-  border-radius: 8px; /* Optional: Add rounded corners */
-  overflow: hidden; /* Ensure the image doesn't overflow */
+  background-color: #f0f0f0; 
+  border-radius: 8px; 
+  overflow: hidden; 
 }
 
 .doctor-image {
   max-width: 100%;
   max-height: 100%;
-  object-fit: cover; /* Ensures the image scales properly */
+  object-fit: cover; 
 }
 .doctor-loading-spinner {
   position: absolute;
@@ -164,8 +164,8 @@
 
 .logout-button2 {
   position: absolute; /* Position the button relative to the notes-section */
-  top: 1rem; /* Distance from the top */
-  right: 1rem; /* Distance from the right */
+  top: 1rem; 
+  right: 1rem; 
   color: white;
   background: #031d3bdf;
   border-radius: 2rem;
@@ -181,7 +181,7 @@
   transition: background 0.3s ease;
 }
 .logout-button2:hover {
-  background: #020d26; /* Slightly darker shade on hover */
+  background: #020d26; 
 }
 
 .note-input {

@@ -9,7 +9,7 @@ import { askDoctor, doctorVoice } from '../api/gpt';
 import { BiPlusMedical } from "react-icons/bi";
 import { saveNote } from '../api/notes';
 import { useNavigate } from 'react-router-dom';
-import {jwtDecode} from "jwt-decode"; // Import jwtDecode to decode the token
+import {jwtDecode} from "jwt-decode"; 
 import { CiLogout } from "react-icons/ci";
 import "../assets/doctorAssistant.jpg"
 
@@ -127,12 +127,12 @@ const DoctorPage = () => {
       const audio = new Audio(audioUrl);
 
       audio.onplay = () => {
-        streamSubtitlesWhileSpeaking(reply, audio); // ✅ only now audio exists
+        streamSubtitlesWhileSpeaking(reply, audio); 
       };
 
       audio.onended = () => {
         setIsListening(false);
-        setSubtitle(""); // ✅ clear subtitles after speech
+        setSubtitle(""); 
 
       };
 
@@ -157,7 +157,7 @@ const DoctorPage = () => {
       const transcript = Array.from(event.results)
         .map(result => result[0].transcript)
         .join(" ");
-        speechBufferRef.current = transcript.trim();  // ✅ store immediately
+        speechBufferRef.current = transcript.trim(); 
         setUserSpeech(transcript.trim());    
     };
 
@@ -173,7 +173,7 @@ const DoctorPage = () => {
 
     recognition.onend = () => {
       setIsListening(false);
-      const bufferedText = speechBufferRef.current;  // ✅ use ref, not state
+      const bufferedText = speechBufferRef.current;  
       if (bufferedText && !isProcessingSpeech) {
         handleDoctorInteraction(bufferedText);
       }
