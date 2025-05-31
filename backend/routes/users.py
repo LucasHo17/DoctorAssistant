@@ -41,7 +41,7 @@ async def login(user: UserLogin):
 
     token = create_access_token({
         "sub": db_user["email"],
-        "username": db_user["username"]  # ✅ include it here
+        "username": db_user["username"]  
 })
 
     return {
