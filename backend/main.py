@@ -8,11 +8,13 @@ origins = [
     "http://localhost:3000",   # CRA default, if you use it
     "http://localhost:5173",   # Vite default
     "http://localhost:5174",   # if you start Vite on 5174
+    "https://doctorassistant-frontend-zidw.onrender.com",
+
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://doctorassistant-frontend-zidw.onrender.com"],  # Adjust to your frontend's port
+    allow_origins=origins,  # Adjust to your frontend's port
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
