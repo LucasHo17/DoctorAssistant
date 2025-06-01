@@ -12,7 +12,7 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://doctorassistant-frontend-em3r.onrender.com"],  # Adjust to your frontend's port
+    allow_origins=["https://doctorassistant-frontend-zidw.onrender.com"],  # Adjust to your frontend's port
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
