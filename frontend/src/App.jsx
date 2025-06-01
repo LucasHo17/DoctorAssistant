@@ -3,10 +3,19 @@ import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import NotesPage from './pages/NotesPage';
 import DoctorPage from './pages/DoctorPage';
+import { useState, useEffect } from 'react';
 
 function App() {
-  const isLoggedIn = !!localStorage.getItem('token');
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
 
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setIsLoggedIn(!!localStorage.getItem('token'));
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
   return (
     <Router>
       <Routes>

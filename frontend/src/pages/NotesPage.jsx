@@ -10,6 +10,7 @@ import { IoMdClose } from "react-icons/io";
 import {jwtDecode} from "jwt-decode";
 import { BiPlusMedical } from "react-icons/bi";
 import { GiStrong } from "react-icons/gi";
+import { updateNoteTitle } from '../api/notes';
 
 const NotesPage = () => {
   const [notes, setNotes]= useState([]);
@@ -41,7 +42,7 @@ const NotesPage = () => {
             setNotes([]);
         });
     }
-  }, []);
+  }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -110,14 +111,23 @@ const NotesPage = () => {
               </div>
               <div className="note-card-buttons">
                 <button
-                  className='edit-title-button'
-                  onClick={(e) => {
+                  className="edit-title-button"
+                  onClick={async (e) => {
                     e.stopPropagation();
-                    const newTitle = prompt("Enter new title: ", note.title || "Unitilted");
+                    const newTitle = prompt("Enter new title: ", note.title || "Untitled");
                     if (newTitle) {
-                      setNotes(notes.map(n=>n.timestamp === note.timestamp ? { ...n, title: newTitle}:n))
+                      try {
+                        await updateNoteTitle(note.note_id, newTitle);  // ✅ call correct function
+                        setNotes(notes.map(n =>
+                          n.note_id === note.note_id ? { ...n, title: newTitle } : n
+                        ));
+                      } catch (err) {
+                        console.error("Failed to update note title:", err);
+                        alert("Failed to update note. Please try again.");
+                      }
                     }
-                }}>
+                  }}
+                >
                   <MdOutlineEdit />
                 </button>
 
@@ -125,8 +135,13 @@ const NotesPage = () => {
                   className="delete-button"
                   onClick={async (e) => {
                     e.stopPropagation();
-                    await deleteNote(note.note_id); // Use note_id instead of timestamp
-                    setNotes(notes.filter(n => n.note_id !== note.note_id));
+                    try {
+                      await deleteNote(note.note_id); // Use note_id instead of timestamp
+                      setNotes(notes.filter(n => n.note_id !== note.note_id));
+                    } catch (err) {
+                      console.error("Failed to delete note:", err);
+                      alert("Failed to delete note. Please try again.");
+                    }
                   }}
                 >
                   <MdOutlineDelete />

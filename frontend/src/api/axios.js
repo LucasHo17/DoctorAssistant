@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL:  'https://doctorassistant-backend.onrender.com/',
+  baseURL:  'https://doctorassistant-backend.onrender.com',
 });
 
 instance.interceptors.request.use((config) => {

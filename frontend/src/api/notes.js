@@ -15,6 +15,14 @@ export const deleteNote = async (noteId) => {
   return response.data;
 };
 
+export const updateNoteTitle = async (note_id, new_title) => {
+  const response = await api.patch("/notes/update-title", {
+    note_id,
+    new_title
+  });
+  return response.data;
+};
+
 
 
 
