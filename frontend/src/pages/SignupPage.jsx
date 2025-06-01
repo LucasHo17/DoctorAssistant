@@ -1,4 +1,3 @@
-import React from 'react'
 import {motion} from 'framer-motion'
 import { useNavigate, Link } from 'react-router-dom'
 import { FaArrowRightToBracket } from "react-icons/fa6";
