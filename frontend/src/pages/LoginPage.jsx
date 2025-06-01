@@ -1,4 +1,3 @@
-import React, { use } from 'react'
 import './LoginPage.css'
 import {motion} from 'framer-motion'
 import { useNavigate, Link } from 'react-router-dom'
