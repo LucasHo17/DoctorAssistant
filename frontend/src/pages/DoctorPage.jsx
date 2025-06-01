@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import './DoctorPage.css';
 import { ImPhoneHangUp } from 'react-icons/im';
 import { TiMicrophone, } from 'react-icons/ti';
