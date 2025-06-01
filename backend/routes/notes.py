@@ -8,7 +8,7 @@ from pydantic import BaseModel
 
 from pydantic import BaseModel
 
-class UpdateNoteTitle(BaseModel):
+class NoteUpdateTitle(BaseModel):
     note_id: str
     new_title: str
 
@@ -59,14 +59,21 @@ async def delete_note(note_id: str, user_email: str = Depends(get_current_user))
     return {"message": "Note deleted"}
 
 @router.patch("/notes/update-title")
-async def update_note_title(data: UpdateNoteTitle, user=Depends(get_current_user)):
-    note = await db["notes"].find_one({"_id": ObjectId(data.note_id), "user_id": user["email"]})
-    if not note:
+async def update_note_title(data: NoteUpdateTitle, user_email: str = Depends(get_current_user)):
+    result = await db["users"].update_one(
+        {
+            "email": user_email,
+            "notes.note_id": data.note_id
+        },
+        {
+            "$set": {
+                "notes.$.title": data.new_title
+            }
+        }
+    )
+
+    if result.modified_count == 0:
         raise HTTPException(status_code=404, detail="Note not found")
 
-    await db["notes"].update_one(
-        {"_id": ObjectId(data.note_id)},
-        {"$set": {"title": data.new_title}}
-    )
-    return {"message": "Title updated"}
+    return {"message": "Title updated successfully"}
 
