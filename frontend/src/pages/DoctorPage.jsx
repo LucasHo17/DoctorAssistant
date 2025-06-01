@@ -21,16 +21,16 @@ const DoctorPage = () => {
   const navigate = useNavigate();
 
   const [elapsedTime, setElapsedTime] = useState("00:00");
-  const [isListening, setIsListening] = useState(false);
-  const [isCameraOn, setIsCameraOn] = useState(false);
-  const [isSubtitlesOn, setIsSubtitlesOn] = useState(true);
-  const [userSpeech, setUserSpeech] = useState("");
-  const [micError, setMicError] = useState(null);
+  const [isListening, setIsListening] = useState(false); // show mic icon and detect speech
+  const [isCameraOn, setIsCameraOn] = useState(false); // show camera icon and toggle webcam
+  const [isSubtitlesOn, setIsSubtitlesOn] = useState(true); // toggle subtitles on/off
+  const [userSpeech, setUserSpeech] = useState(""); // store the latest speech input. Example: "You said: ..."
+  const [micError, setMicError] = useState(null); // store microphone errors
   const [doctorReply, setDoctorReply] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isProcessingSpeech, setIsProcessingSpeech] = useState(false);
-  const [noteContent, setNoteContent] = useState("");
-  const [chatHistory, setChatHistory] = useState([{ role: "system", content: "You are a helpful AI doctor." }]);
+  const [isLoading, setIsLoading] = useState(false); // show loading spinner when doctor is thinking
+  const [isProcessingSpeech, setIsProcessingSpeech] = useState(false); //ensure 1 reply, preven overlapping reply
+  const [noteContent, setNoteContent] = useState(""); // store current note, and save note when call ends
+  const [chatHistory, setChatHistory] = useState([{ role: "system", content: "You are a helpful AI doctor." }]); // for ai remember the whole context of conversation
   const [subtitle, setSubtitle] = useState("");         // displayed gradually
   const [fullDoctorReply, setFullDoctorReply] = useState(""); // stores full text
   const [isTalking, setIsTalking] = useState(false); // Controls Lottie animation
