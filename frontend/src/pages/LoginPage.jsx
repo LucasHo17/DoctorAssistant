@@ -1,6 +1,6 @@
 import './LoginPage.css'
 import {motion} from 'framer-motion'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, redirect } from 'react-router-dom'
 import { FaArrowRightToBracket } from "react-icons/fa6";
 import { useState } from 'react';
 import { login } from '../api/auth';
@@ -19,7 +19,7 @@ const LoginPage = ({setIsLoggedIn}) => {
             localStorage.setItem('token', response.access_token);
             console.log("Token stored:", localStorage.getItem('token')); // Debugging
             setIsLoggedIn(true);
-            navigate("/loading");
+            navigate("/loading", {state: {redirectPath: "/"}});
         } else {
             alert("Login failed: No access token received.");
         }

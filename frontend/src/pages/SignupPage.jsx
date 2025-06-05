@@ -1,5 +1,5 @@
 import {motion} from 'framer-motion'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, redirect } from 'react-router-dom'
 import { FaArrowRightToBracket } from "react-icons/fa6";
 import { useState } from 'react';
 import './SignupPage.css';
@@ -16,7 +16,7 @@ const SignupPage = () => {
       try {
           const response = await signup(email, password, username); // Use the correct signup function
           if (response.message === "Signup successful") {
-              navigate('/login'); 
+              navigate('/loading', {state: {redirectPath: "/login"}}); 
           } else {
               alert("Signup failed. Please try again.");
           }

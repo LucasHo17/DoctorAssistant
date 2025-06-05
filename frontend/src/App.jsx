@@ -22,7 +22,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn}/>}/>
         <Route path="/signup" element={<SignupPage/>}/>
-        <Route path="/loading" element={<LoadingPage/>}/>
+        <Route path="/loading" element={<LoadingPage redirectPath={location.state?.redirectPath || "/"}/>}/>
         <Route path="/doctor" element={isLoggedIn ? <DoctorPage/> : <Navigate to = "/login" />}/>
         <Route path="/" element={isLoggedIn ? <NotesPage/> : <Navigate to = "/login" />}/>
       </Routes>
