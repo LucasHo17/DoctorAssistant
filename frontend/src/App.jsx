@@ -3,6 +3,7 @@ import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import NotesPage from './pages/NotesPage';
 import DoctorPage from './pages/DoctorPage';
+import LoadingPage from './pages/LoadingPage';
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/signup" element={<SignupPage/>}/>
+        <Route path="/loading" element={<LoadingPage/>}/>
         <Route path="/doctor" element={isLoggedIn ? <DoctorPage/> : <Navigate to = "/login" />}/>
         <Route path="/" element={isLoggedIn ? <NotesPage/> : <Navigate to = "/login" />}/>
       </Routes>
