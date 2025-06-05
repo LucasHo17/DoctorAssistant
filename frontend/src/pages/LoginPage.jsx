@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { login } from '../api/auth';
 
 
-const LoginPage = () => {
+const LoginPage = ({setIsLoggedIn}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -18,6 +18,7 @@ const LoginPage = () => {
         if (response.access_token) {
             localStorage.setItem('token', response.access_token);
             console.log("Token stored:", localStorage.getItem('token')); // Debugging
+            setIsLoggedIn(true);
             setTimeout(() => {
               navigate("/loading");
             }, 1000); 

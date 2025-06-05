@@ -20,7 +20,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn}/>}/>
         <Route path="/signup" element={<SignupPage/>}/>
         <Route path="/loading" element={<LoadingPage/>}/>
         <Route path="/doctor" element={isLoggedIn ? <DoctorPage/> : <Navigate to = "/login" />}/>
