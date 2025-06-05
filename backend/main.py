@@ -8,7 +8,7 @@ origins = [
     "http://localhost:3000",   # CRA default, if you use it
     "http://localhost:5173",   # Vite default
     "http://localhost:5174",   # if you start Vite on 5174
-    "https://doctorassistant-frontend-zidw.onrender.com",
+    "https://doctorassistant-frontend-wlo8.onrender.com",
     "http://127.0.0.1:5173"
 ]
 
