@@ -19,9 +19,7 @@ const LoginPage = ({setIsLoggedIn}) => {
             localStorage.setItem('token', response.access_token);
             console.log("Token stored:", localStorage.getItem('token')); // Debugging
             setIsLoggedIn(true);
-            setTimeout(() => {
-              navigate("/loading");
-            }, 1000); 
+            navigate("/loading");
         } else {
             alert("Login failed: No access token received.");
         }
