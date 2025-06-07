@@ -127,10 +127,12 @@ const DoctorPage = () => {
       const audio = new Audio(audioUrl);
 
       audio.onplay = () => {
+        setIsTalking(true);
         streamSubtitlesWhileSpeaking(reply, audio); 
       };
 
       audio.onended = () => {
+        setIsTalking(false); // Stop mouth animation
         setIsListening(false);
         setSubtitle(""); 
 
@@ -202,7 +204,13 @@ const DoctorPage = () => {
     <div className="doctor-page">
       <div className="video-section">
         <div className="doctor-camera">
-          <img src="https://res.cloudinary.com/di2j2vkbt/image/upload/v1748674458/doctorAsisstant_nc1gsr.jpg" alt="Doctor Assistant" className="doctor-image" />        </div>
+          <div className='doctor-frame'>
+            <img src="https://res.cloudinary.com/di2j2vkbt/image/upload/v1749293306/docAssistant_bptcie.jpg" alt="Doctor Assistant" className="doctor-image" />        
+            <div className="lip-wrapper">
+              <div className={`mouth-core ${isTalking ? "talking" : ""}`}></div>
+            </div>  
+          </div>    
+        </div>
         {isLoading && (
           <div className="doctor-loading-spinner">
             <div className="spinner" />
