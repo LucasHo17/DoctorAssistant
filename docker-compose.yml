@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: doctor-backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env     # put MONGO_URI, OPENAI_API_KEY, JWT_SECRET_KEY, DID_API_KEY here
+    ports:
+      - "8000:8000"
+    networks:
+      - doctor-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_BASE_URL=/api
+    container_name: doctor-frontend
+    restart: unless-stopped
+    ports:
+      - "5173:80"  # host:container (serve frontend on host:5173)
+    depends_on:
+      - backend
+    networks:
+      - doctor-net
+
+networks:
+  doctor-net:
+    driver: bridge
