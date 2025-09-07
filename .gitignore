@@ -28,3 +28,10 @@ backend/venv/
 *.njsproj
 *.sln
 *.sw?
+
+// ...existing code...
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pycx
