@@ -1,4 +1,4 @@
-# Doctor Assistant – AI-Powered Virtual Healthcare Assistant (2025)
+# Doctor Assistant – AI-Powered Virtual Healthcare Assistant
 
 **Tech Stack:** React, FastAPI, MongoDB, OpenAI (GPT-4o + TTS), JWT, Web Speech API, Cloudinary, Docker  
 **GitHub:** [github.com/LucasHo17/DoctorAssistant](https://github.com/LucasHo17/DoctorAssistant)
@@ -33,6 +33,7 @@ cd ../backend && pip install -r requirements.txt
 
 # Run backend and frontend
 docker-compose up
+
 
 
 
