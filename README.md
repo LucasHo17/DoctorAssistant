@@ -1,4 +1,4 @@
-# Doctor Assistant – AI-Powered Virtual Healthcare Assistant
+# MediSync AI – AI-Powered Virtual Healthcare Assistant
 
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-blue)](https://github.com/LucasHo17/DoctorAssistant)
 [![Tech Stack](https://img.shields.io/badge/Stack-React%20%7C%20FastAPI%20%7C%20MongoDB-green)](https://github.com/LucasHo17/DoctorAssistant)
@@ -26,7 +26,7 @@
 
 ## 🎯 Project Overview
 
-Doctor Assistant is an AI-powered virtual healthcare platform that enables users to interact with a virtual doctor, receive personalized medical advice, and manage personal health notes. The platform combines natural language AI, realistic voice responses, and a responsive web interface to create an engaging telehealth experience.
+MediSync AI is an AI-powered virtual healthcare platform that enables users to interact with a virtual doctor, receive personalized medical advice, and manage personal health notes. The platform combines natural language AI, realistic voice responses, and a responsive web interface to create an engaging telehealth experience.
 
 ---
 
@@ -245,6 +245,7 @@ This project is open source and available under the [MIT License](LICENSE).
 ---
 
 **Built with ❤️ using React, FastAPI, and OpenAI**
+
 
 
 
